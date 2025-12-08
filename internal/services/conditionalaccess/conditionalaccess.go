@@ -638,14 +638,14 @@ func expandConditionalAccessSessionControls(in []interface{}) *stable.Conditiona
 	}
 
 	applicationEnforcedRestrictions := config["application_enforced_restrictions_enabled"].(bool)
-	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // application enforced restrictions are not allowed for everyTime sign-in frequency see https://github.com/glueckkanja/terraform-provider-azuread/issues/1225
+	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // application enforced restrictions are not allowed for everyTime sign-in frequency see https://github.com/hashicorp/terraform-provider-azuread/issues/1225
 		result.ApplicationEnforcedRestrictions = &stable.ApplicationEnforcedRestrictionsSessionControl{
 			IsEnabled: nullable.Value(applicationEnforcedRestrictions),
 		}
 	}
 
 	DisableResilienceDefaults := config["disable_resilience_defaults"].(bool)
-	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // disable resilience defaults are not allowed for everyTime sign-in frequency see https://github.com/glueckkanja/terraform-provider-azuread/issues/1225
+	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // disable resilience defaults are not allowed for everyTime sign-in frequency see https://github.com/hashicorp/terraform-provider-azuread/issues/1225
 		result.DisableResilienceDefaults = nullable.Value(DisableResilienceDefaults)
 	}
 
