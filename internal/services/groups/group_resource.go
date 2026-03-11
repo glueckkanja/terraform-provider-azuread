@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 
 package groups
@@ -45,9 +45,9 @@ func groupResource() *pluginsdk.Resource {
 		CustomizeDiff: groupResourceCustomizeDiff,
 
 		Timeouts: &pluginsdk.ResourceTimeout{
-			Create: pluginsdk.DefaultTimeout(20 * time.Minute),
+			Create: pluginsdk.DefaultTimeout(30 * time.Minute),
 			Read:   pluginsdk.DefaultTimeout(5 * time.Minute),
-			Update: pluginsdk.DefaultTimeout(20 * time.Minute),
+			Update: pluginsdk.DefaultTimeout(30 * time.Minute),
 			Delete: pluginsdk.DefaultTimeout(5 * time.Minute),
 		},
 
@@ -335,6 +335,8 @@ func groupResource() *pluginsdk.Resource {
 
 func groupResourceCustomizeDiff(ctx context.Context, diff *pluginsdk.ResourceDiff, meta interface{}) error {
 	client := meta.(*clients.Client).Groups.GroupClientBeta
+	ctx, cancel := context.WithTimeout(ctx, time.Minute*5)
+	defer cancel()
 
 	// Check for duplicate names
 	oldDisplayName, newDisplayName := diff.GetChange("display_name")
