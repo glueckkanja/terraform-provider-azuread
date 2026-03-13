@@ -8,7 +8,7 @@ checksum:
   require_checksum: true
 registries:
   - type: standard
-    ref: v4.444.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.481.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: sigstore/cosign@v3.0.2
-  - name: goreleaser/goreleaser@v2.13.1
+  - name: sigstore/cosign@v3.0.5
+  - name: goreleaser/goreleaser@v2.14.3
