@@ -31,13 +31,3 @@ jobs:
       - run: make test
         env:
           GITHUB_ACTIONS_STAGE: "UNIT_TESTS"
-
-  save-artifacts-on-fail:
-    needs: [ test ]
-    if: ${{ failure() }}
-    uses: $/.github/workflows/save-artifacts.yaml
-
-  comment-on-fail:
-    needs: [ test ]
-    if: ${{ failure() }}
-    uses: $/.github/workflows/comment-failure.yaml

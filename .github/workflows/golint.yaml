@@ -26,15 +26,3 @@ jobs:
         with:
           version: 'v1.64.8'
           args: -v
-
-  save-artifacts-on-fail:
-    needs: golint
-    if: ${{ failure() }}
-    uses: $/.github/workflows/save-artifacts.yaml
-
-  comment-on-fail:
-    needs: golint
-    if: ${{ failure() }}
-    permissions:
-      pull-requests: write # post the build-failure comment on the PR
-    uses: $/.github/workflows/comment-failure.yaml
